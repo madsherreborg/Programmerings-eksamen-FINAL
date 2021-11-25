@@ -19,4 +19,4 @@ app.listen(PORT, () => {
 
 app.get("/login"), (req, res) => {
     res.status(200).json('succes');
-}; w
+};
