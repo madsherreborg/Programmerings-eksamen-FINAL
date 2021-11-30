@@ -28,7 +28,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
         }))
     }
 })
-// If user is already logged in and reloades
+// If user is already logged in and
 function onload() {
     const user = localStorage.getItem("User")
     if (user) {

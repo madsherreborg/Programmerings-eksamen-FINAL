@@ -18,6 +18,12 @@ document.getElementById("new_user").addEventListener("click", (event) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(() => window.location.replace(window.location.origin + "/public/login/login.html"))
+    }).then((response) => response.json().then(body => {
+        if (body === "succes") {
+            window.location.replace(window.location.origin + "/public/login/login.html")
+        } else {
+            alert("E-mailen er allerede i brug")
+        }
+    }))
     event.preventDefault();
 })

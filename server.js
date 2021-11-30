@@ -51,14 +51,38 @@ app.post('/signup', (req, res) => {
         fs.writeFileSync("./database/users.json", JSON.stringify({
             users: [req.body]
         }))
+        res.status(200).json('succes');
     } else {
         let users = JSON.parse(filecontent)
         console.log(users)
-        users.users.push(req.body)
-        fs.writeFileSync("./database/users.json", JSON.stringify(users)
-        )
+        const founduser = users.users.find(item => item.name === name)
+        if (founduser) {
+            res.status(200).json('error')
+        } else {
+            users.users.push(req.body)
+            fs.writeFileSync("./database/users.json", JSON.stringify(users)
+            )
+            res.status(200).json('succes');
+        }
     }
 
-    res.status(200).json('succes');
+
 }
 )
+// delete
+app.post('/user/delete', (req, res) => {
+    const name = req.body.name;
+    const password = req.body.password;
+    console.log(name)
+    console.log(password)
+    const filecontent = fs.readFileSync("./database/users.json", "utf8")
+    if (filecontent !== "") {
+        let users = JSON.parse(filecontent)
+        const userindex = users.users.findIndex(item => item.name === name)
+        if (userindex > -1) {
+            users.users.splice(userindex, 1)
+            fs.writeFileSync("./database/users.json", JSON.stringify(users))
+        }
+    }
+    res.status(200).json("succes")
+})
