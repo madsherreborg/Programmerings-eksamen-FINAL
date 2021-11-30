@@ -1,3 +1,5 @@
+
+
 document.getElementById("submit").addEventListener("click", (event) => {
     event.preventDefault();
     const form = document.getElementById("loginform")
@@ -19,6 +21,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
             }
         }).then(response => response.json().then(body => {
             if (body !== "error") {
+                localStorage.setItem("bruger", JSON.stringify(user))
                 window.location.replace("http://127.0.0.1:5500/public/front_page/frontpage.html")
 
             }
