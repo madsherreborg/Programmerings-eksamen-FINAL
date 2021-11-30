@@ -1,3 +1,5 @@
+
+console.log(window.location.origin)
 document.getElementById("new_user").addEventListener("click", (event) => {
 
     const form = document.getElementById("signupform")
@@ -16,6 +18,6 @@ document.getElementById("new_user").addEventListener("click", (event) => {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(() => window.location.replace("http://127.0.0.1:5500/public/login/login.html"))
+    }).then(() => window.location.replace(window.location.origin + "/public/login/login.html"))
     event.preventDefault();
 })
