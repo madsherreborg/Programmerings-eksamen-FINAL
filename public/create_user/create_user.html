@@ -5,22 +5,23 @@
     <title>Log ind</title>
     <link rel="stylesheet" href="signup.css">
     </link>
+    <script defer src="create_user.js"></script>
 </head>
 
 <body>
-    <form>
-        <h1>Tilmeld dig</h1>
-        <div>
-            <input name="name" type="text" placeholder="Nyt brugernavn">
-        </div>
-        <div>
-            <input name="password" type="text" placeholder="Nyt password">
-        </div>
-        <button type="submit" id="new_user">Tilmeld dig</button>
-        <div>Har du allerede en bruger?</div>
-        <a class="signup" href="../login/login.html">Log ind</a>
+    <h1>Tilmeld dig</h1>
+    <form id="signupform">
+
+        <input name="name" type="text" placeholder="E-mail">
+
+        <input name="password" type="password" placeholder="Nyt password">
+
+        <button id="new_user">Tilmeld dig</button>
+
 
     </form>
+    <div>Har du allerede en bruger?</div>
+    <a class="signup" href="../login/login.html">Log ind</a>
 </body>
 
 </html>

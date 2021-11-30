@@ -3,10 +3,12 @@ const fs = require("fs");
 
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan')
+
 
 const app = express();
 app.use(cors())
-
+app.use(morgan("dev"))
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -19,13 +21,44 @@ app.listen(PORT, () => {
 
 //login 
 
-app.get('/login', (req, res) => {
-    res.status(200).json('succes');
+app.post('/login', (req, res) => {
+    console.log(req.body)
+    const filecontent = fs.readFileSync("./database/users.json", "utf8")
+    if (filecontent === "") {
+        res.status(200).json('error')
+    }
+    let users = JSON.parse(filecontent)
+    console.log(users)
+    console.log(users.users)
+    const found_user = users.users.find(user => (user.name === req.body.name && user.password === req.body.password))
+    if (found_user) {
+        res.status(200).json(found_user)
+    }
+    else {
+        res.status(200).json('error')
+    }
 });
 
 // signup
 app.post('/signup', (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
+    console.log(name)
+    console.log(password)
+    const filecontent = fs.readFileSync("./database/users.json", "utf8")
+
+    if (filecontent === "") {
+        fs.writeFileSync("./database/users.json", JSON.stringify({
+            users: [req.body]
+        }))
+    } else {
+        let users = JSON.parse(filecontent)
+        console.log(users)
+        users.users.push(req.body)
+        fs.writeFileSync("./database/users.json", JSON.stringify(users)
+        )
+    }
+
+    res.status(200).json('succes');
 }
 )

@@ -4,22 +4,25 @@
 <head>
     <title>Log ind</title>
     </link>
+    <script defer src="login.js"></script>
 </head>
 
 <body>
-    <form>
-        <h1>Log ind</h1>
-        <div>
-            <input type="text" placeholder="Brugernavn">
-        </div>
-        <div>
-            <input type="text" placeholder="Password">
-        </div>
+    <h1>Log ind</h1>
+    <form id="loginform">
+
+
+        <input required name="name" type="text" placeholder="E-mail">
+
+        <input required name="password" type="password" placeholder="Password">
+
         <button id="submit">Log ind</button>
-        <div>Har du ikke en bruger?</div>
-        <a class="signup" href="../create_user/create_user.html">Tilmeld dig</a>
+
+
 
     </form>
+    <div>Har du ikke en bruger?</div>
+    <a class="signup" href="../create_user/create_user.html">Tilmeld dig</a>
 </body>
 
 </html>
