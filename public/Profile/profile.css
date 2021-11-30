@@ -1,0 +1,24 @@
+body{
+    background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(178,178,255,1) 100%);
+font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  color: #000000;
+}
+
+
+.navigation {
+    font-size: 30px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	align-content: stretch;
+    background-color: lightgrey;
+ 
+  border: 15px solid rgb(50, 37, 224);
+  padding: 5px;
+  margin: 5px;
+    }

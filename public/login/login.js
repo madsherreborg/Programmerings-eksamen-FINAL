@@ -21,10 +21,18 @@ document.getElementById("submit").addEventListener("click", (event) => {
             }
         }).then(response => response.json().then(body => {
             if (body !== "error") {
-                localStorage.setItem("bruger", JSON.stringify(user))
-                window.location.replace("http://127.0.0.1:5500/public/front_page/frontpage.html")
+                localStorage.setItem("User", JSON.stringify(user))
+                window.location.replace("http://127.0.0.1:5500/public/Profile/profile.html")
 
             }
         }))
     }
 })
+// If user is already logged in and reloades
+function onload() {
+    const user = localStorage.getItem("User")
+    if (user) {
+        window.location.replace("http://127.0.0.1:5500/public/Profile/profile.html")
+
+    }
+}
