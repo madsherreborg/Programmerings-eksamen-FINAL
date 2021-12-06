@@ -1,6 +1,5 @@
 // imports
 const fs = require("fs");
-
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan')
@@ -46,18 +45,20 @@ app.post('/signup', (req, res) => {
     console.log(name)
     console.log(password)
     const filecontent = fs.readFileSync("./database/users.json", "utf8")
-
+    // if there is no users in the json file
     if (filecontent === "") {
         fs.writeFileSync("./database/users.json", JSON.stringify({
             users: [req.body]
         }))
         res.status(200).json('succes');
+        // If there is already a user in the the database with the same name
     } else {
         let users = JSON.parse(filecontent)
         console.log(users)
         const founduser = users.users.find(item => item.name === name)
         if (founduser) {
             res.status(200).json('error')
+            // if there is already a user in the json file and a new user needs to be added to the array
         } else {
             users.users.push(req.body)
             fs.writeFileSync("./database/users.json", JSON.stringify(users)

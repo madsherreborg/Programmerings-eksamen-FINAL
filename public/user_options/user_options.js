@@ -1,3 +1,4 @@
+// Delete User
 document.getElementById("delete_user").addEventListener("click", (event) => {
     event.preventDefault();
     const user = localStorage.getItem('User');

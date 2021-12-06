@@ -1,5 +1,4 @@
 
-console.log(window.location.origin)
 document.getElementById("new_user").addEventListener("click", (event) => {
 
     const form = document.getElementById("signupform")

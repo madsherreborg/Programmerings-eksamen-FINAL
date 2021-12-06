@@ -28,7 +28,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
         }))
     }
 })
-// If user is already logged in and
+// If user is already in localstorage and goes back to login page
 function onload() {
     const user = localStorage.getItem("User")
     if (user) {
