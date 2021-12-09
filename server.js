@@ -24,7 +24,7 @@ app.post('/login', (req, res) => {
     console.log(req.body)
     const filecontent = fs.readFileSync("./database/users.json", "utf8")
     if (filecontent === "") {
-        res.status(200).json('error')
+        res.status(401).json('error')
     }
     let users = JSON.parse(filecontent)
     console.log(users)
@@ -34,7 +34,7 @@ app.post('/login', (req, res) => {
         res.status(200).json(found_user)
     }
     else {
-        res.status(200).json('error')
+        res.status(401).json('error')
     }
 });
 
@@ -111,3 +111,4 @@ app.post('/user/update', (req, res) => {
     fs.writeFileSync("./database/users.json", JSON.stringify(users))
     res.status(200).json("succes")
 })
+module.exports = app

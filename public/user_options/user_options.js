@@ -42,7 +42,7 @@ document.getElementById("submit").addEventListener("click", (event) => {
         }
         // Fetch makes a promise that resolves request
     }).then(response => response.json().then(body => {
-        // when user is updated an alert will appear.
+        // when user is updated an alert will appear. Grunden til der ikke er en catch er fordi at den eneste måde requestet kan fejle, er hvis den ikke kan nå hen til serveren, men fordi det er localhost virker det altid.
         localStorage.setItem("User", updated_user)
         alert("Din kode er nu blevet ændret")
     }))
