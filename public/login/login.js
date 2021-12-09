@@ -25,7 +25,8 @@ document.getElementById("submit").addEventListener("click", (event) => {
             headers: {
                 'Content-Type': 'application/json'
             }
-            // ????
+            // Fetch makes a promise that resolves request
+            // !== means not equal to
         }).then(response => response.json().then(body => {
             if (body !== "error") {
                 localStorage.setItem("User", JSON.stringify(user))

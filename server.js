@@ -79,11 +79,35 @@ app.post('/user/delete', (req, res) => {
     const filecontent = fs.readFileSync("./database/users.json", "utf8")
     if (filecontent !== "") {
         let users = JSON.parse(filecontent)
+        // Find user in array an return index of the user
         const userindex = users.users.findIndex(item => item.name === name)
         if (userindex > -1) {
+            // splice starts at the index of the user and deletes 1 user
             users.users.splice(userindex, 1)
             fs.writeFileSync("./database/users.json", JSON.stringify(users))
         }
     }
+    res.status(200).json("succes")
+})
+
+// update user
+app.post('/user/update', (req, res) => {
+    const name = req.body.name;
+    const password = req.body.password;
+
+    console.log(name)
+    console.log(password)
+    // reads json file
+    const filecontent = fs.readFileSync("./database/users.json", "utf8")
+    let users = JSON.parse(filecontent)
+    // "let" is a keyword that makes you change it. you cant change const. 
+    const founduserindex = users.users.findIndex(item => item.name === name)
+    // splice always returns an aray. But there is only 1 thing in the array. splice take the user out of the array.
+    let user = users.users.splice(founduserindex, 1)
+    // user = user takes the first element out of the array.
+    user = user[0]
+    user.password = password
+    users.users.push(user)
+    fs.writeFileSync("./database/users.json", JSON.stringify(users))
     res.status(200).json("succes")
 })
